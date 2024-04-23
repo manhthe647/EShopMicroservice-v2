@@ -1,0 +1,6 @@
+@HangFired.API_HostAddress = http://localhost:5095
+
+GET {{HangFired.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
