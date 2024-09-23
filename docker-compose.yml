@@ -15,7 +15,7 @@ services:
    image: redis:alpine
    
   inventorydb:
-   image: mongodb:latest
+   image: mongo:latest
   
   #infrastructure
   rabbitmq:
@@ -27,11 +27,11 @@ services:
   portainer:
    image: portainer/portainer-ce
   
-  elasticsearch:
-    image: docker.elastic.co/kibana/kibana:7.17.2
+  # elasticsearch:
+  #   image: docker.elastic.co/kibana/kibana:7.17.2
     
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.17.2
+  # kibana:
+  #   image: docker.elastic.co/kibana/kibana:7.17.2
 
 #network 
 networks:
