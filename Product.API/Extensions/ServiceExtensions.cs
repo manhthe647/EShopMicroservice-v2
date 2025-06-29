@@ -1,4 +1,9 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using MySql.Data.MySqlClient;
+using MySqlConnector;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Product.API.Persistence;
 
 namespace Product.API.Extensions
 {
@@ -10,7 +15,7 @@ namespace Product.API.Extensions
         /// </summary>
         /// <param name="services">IServiceCollection để thêm các dịch vụ.</param>
         /// <returns>IServiceCollection đã được cấu hình.</returns>
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             // 1. Controllers: xử lý HTTP request và trả về response
             // Ví dụ: Khi client gọi GET /products, controller sẽ trả về danh sách sản phẩm.
@@ -55,7 +60,37 @@ namespace Product.API.Extensions
             // -- Message Queue: ví dụ RabbitMQ
             // services.AddSingleton<IMessageQueueClient, RabbitMqClient>();
 
+            services.ConfigureProductDbContext(configuration);
             return services;
         }
+
+        // Phương thức mở rộng để cấu hình ProductDbContext với MySQL
+        private static IServiceCollection ConfigureProductDbContext(
+            this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            // Lấy chuỗi kết nối từ cấu hình (ví dụ: appsettings.json)
+            var connectionString = configuration.GetConnectionString(name: "ProductConnection");
+
+            // Dùng MySqlConnectionStringBuilder để phân tích và xử lý chuỗi kết nối
+            var builder = new MySqlConnectionStringBuilder(connectionString);
+
+            // Đăng ký ProductContext với DI container, dùng MySQL làm database provider
+            services.AddDbContext<ProductContext>(options =>
+                options.UseMySql(
+                    builder.ConnectionString,                             // Chuỗi kết nối đã build lại
+                    ServerVersion.AutoDetect(builder.ConnectionString),   // Tự động phát hiện version MySQL server
+                    mySqlOptions =>                                       // Cấu hình bổ sung cho MySQL
+                    {
+                        // Xác định nơi chứa các file migration
+                        mySqlOptions.MigrationsAssembly("Product.API");
+
+                        // Bỏ qua kiểm tra schema (hữu ích trong một số môi trường đặc biệt như CI/CD)
+                        mySqlOptions.SchemaBehavior(MySqlSchemaBehavior.Ignore);
+                    })
+            );
+            return services;
+        }
+
     }
 }

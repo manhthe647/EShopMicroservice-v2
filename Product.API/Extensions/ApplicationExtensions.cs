@@ -19,7 +19,7 @@
             }
 
             // 2. HTTPS Redirection (phải đặt trước UseRouting)
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection(); //for product
 
             // 3. Routing
             app.UseRouting();
