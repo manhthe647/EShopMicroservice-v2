@@ -3,7 +3,7 @@
 services:
   #database section
   orderdb:
-    container_name: orderdb
+    container_name: orderdb_eshop
     environment:
       SA_PASSWORD: "123456"
       ACCEPT_EULA: "Y"
@@ -14,17 +14,17 @@ services:
       - "1435:1433"
 
   productdb:
-    container_name: productdb
+    container_name: productdb_eshop
     environment:
       MYSQL_ROOT_PASSWORD: "123456"
     restart: always
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
   customerdb:
-    container_name: customerdb
+    container_name: customerdb_eshop
     environment:
       POSTGRES_PASSWORD: "123456"
     restart: always
@@ -34,7 +34,7 @@ services:
       - "3308:5432"
 
   basketdb:
-    container_name: basketdb
+    container_name: basketdb_eshop
     restart: always
     ports:
       - "6379:6379"
@@ -42,7 +42,7 @@ services:
       - redis_data:/data
 
   inventorydb:
-    container_name: inventorydb
+    container_name: inventorydb_eshop
     restart: always
     ports:
       - "27017:27017"
@@ -51,14 +51,14 @@ services:
 
   #infrastructure section
   rabbitmq:
-    container_name: rabbitmq
+    container_name: rabbitmq_eshop
     restart: always
     ports:
       - "5672:5672"
       - "15672:15672"
 
   pgadmin:
-    container_name: pgadmin
+    container_name: pgadmin_eshop
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=admin1234
@@ -69,7 +69,7 @@ services:
       - pgadmin_data:/var/lib/pgadmin
 
   portainer:
-    container_name: portainer
+    container_name: portainer_eshop
     restart: always
     ports:
       - "8080:8000"
@@ -79,7 +79,7 @@ services:
       - portainer_data:/data
 
   elasticsearch:
-    container_name: elasticsearch
+    container_name: elasticsearch_eshop
     environment:
       - xpack.monitoring.enabled=true
       - xpack.watcher.enabled=false
@@ -91,7 +91,7 @@ services:
       - elasticsearch_data:/usr/share/elasticsearch/data
 
   kibana:
-    container_name: kibana
+    container_name: kibana_eshop
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
     depends_on:
