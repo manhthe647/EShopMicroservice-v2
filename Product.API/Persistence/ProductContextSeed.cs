@@ -16,9 +16,9 @@ namespace Product.API.Persistence
 
             Log.Information("Seeding Yu-Gi-Oh card data...");
 
-            var products = new List<Entities.Product>
+            var products = new List<Entities.CardProduct>
             {
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-001",
                     Name = "Blue-Eyes White Dragon",
@@ -29,7 +29,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-002",
                     Name = "Dark Magician",
@@ -40,7 +40,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-003",
                     Name = "Exodia the Forbidden One",
@@ -51,7 +51,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-004",
                     Name = "Red-Eyes Black Dragon",
@@ -62,7 +62,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-005",
                     Name = "Mirror Force",
@@ -73,7 +73,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-006",
                     Name = "Pot of Greed",
@@ -84,7 +84,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-007",
                     Name = "Elemental HERO Sparkman",
@@ -95,7 +95,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-008",
                     Name = "Mystical Space Typhoon",
@@ -106,7 +106,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-009",
                     Name = "Kuriboh",
@@ -117,7 +117,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-010",
                     Name = "Sangan",
@@ -128,7 +128,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-011",
                     Name = "Black Luster Soldier",
@@ -139,7 +139,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-012",
                     Name = "Celtic Guardian",
@@ -150,7 +150,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-013",
                     Name = "Jinzo",
@@ -161,7 +161,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-014",
                     Name = "Summoned Skull",
@@ -172,7 +172,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-015",
                     Name = "Raigeki",
@@ -183,7 +183,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-016",
                     Name = "Flame Swordsman",
@@ -194,7 +194,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-017",
                     Name = "Magician of Black Chaos",
@@ -205,7 +205,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-018",
                     Name = "Fissure",
@@ -216,7 +216,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-019",
                     Name = "Time Wizard",
@@ -227,7 +227,7 @@ namespace Product.API.Persistence
                     CreatedDate = DateTime.UtcNow,
                     CreatedBy = "System"
                 },
-                new Entities.Product
+                new Entities.CardProduct
                 {
                     No = "YGO-020",
                     Name = "Thousand-Eyes Restrict",

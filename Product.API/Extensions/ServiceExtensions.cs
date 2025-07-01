@@ -1,8 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Contracts.Common.Interfaces;
+using Infrastructure.Common;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using MySqlConnector;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Product.API.Persistence;
+using Product.API.Repositories;
+using Product.API.Repositories.Interfaces;
 
 namespace Product.API.Extensions
 {
@@ -35,7 +39,7 @@ namespace Product.API.Extensions
             // 4. Swagger: tạo giao diện và tài liệu tự động cho API
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo 
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Product API",
                     Version = "v1",
@@ -60,6 +64,7 @@ namespace Product.API.Extensions
             // services.AddSingleton<IMessageQueueClient, RabbitMqClient>();
 
             services.ConfigureProductDbContext(configuration);
+            services.AddInfrastructureServices();
             return services;
         }
 
@@ -90,6 +95,15 @@ namespace Product.API.Extensions
             );
             return services;
         }
+
+        private static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
+        {
+            return services
+                .AddScoped(typeof(IRepositoryBaseAsync<,,>), typeof(RepositoryBaseAsync<,,>))
+                .AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>))
+                .AddScoped<IProductRepository, ProductRepository>();
+        }
+
 
     }
 }

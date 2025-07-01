@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Product.API.Entities
 {
-    public class Product : EntityAuditBase<long>
+    public class CardProduct : EntityAuditBase<long>
     {
         //public long Id { get; set; }
         [Required]

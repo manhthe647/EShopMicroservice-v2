@@ -8,7 +8,7 @@ namespace Product.API.Persistence
         public ProductContext(DbContextOptions<ProductContext> options) : base(options)
         {
         }
-        public DbSet<Entities.Product> Products { get; set; }
+        public DbSet<Entities.CardProduct> Products { get; set; }
         // Ghi đè phương thức SaveChangesAsync để xử lý logic cập nhật thời gian tạo/sửa đổi
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
