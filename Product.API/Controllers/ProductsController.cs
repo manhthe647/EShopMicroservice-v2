@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Product.API.Entities;
 using Product.API.Persistence;
 using Product.API.Repositories.Interfaces;
+using Shared.DTOs.Product;
 
 namespace Product.API.Controllers
 {
@@ -25,7 +26,7 @@ namespace Product.API.Controllers
         public async Task<IActionResult> GetProducts()
         {
             var products = await _repository.GetProducts();
-            var result = _mapper.Map<List<CardProduct>>(products);
+            var result = _mapper.Map<List<ProductDto>>(products);
             return Ok(products);
         }
 

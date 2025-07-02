@@ -65,6 +65,7 @@ namespace Product.API.Extensions
 
             services.ConfigureProductDbContext(configuration);
             services.AddInfrastructureServices();
+            services.AddAutoMapper(cfg=>cfg.AddProfile(new MappingProfile())); // Thêm AutoMapper để ánh xạ DTOs và Entities
             return services;
         }
 

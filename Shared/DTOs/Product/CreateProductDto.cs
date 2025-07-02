@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared.DTOs.Product
 {
-    internal class CreateProductDto
+    public class CreateProductDto
     {
     }
 }

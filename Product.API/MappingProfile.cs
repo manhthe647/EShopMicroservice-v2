@@ -1,6 +1,16 @@
-﻿namespace Product.API
+﻿using AutoMapper;
+using Product.API.Entities;
+using Shared.DTOs.Product;
+
+namespace Product.API
 {
-    public class MappingProfile
+    public class MappingProfile: Profile
     {
+        public MappingProfile()
+        {
+            CreateMap<CardProduct, ProductDto>();
+            //CreateMap<CreateProductDto, CardProduct>();
+            //CreateMap<UpdateProductDto, CardProduct>();
+        }
     }
 }

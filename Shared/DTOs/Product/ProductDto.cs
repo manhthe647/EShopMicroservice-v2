@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Shared.DTOs.Product
 {
-    internal class ProductDto
+    public class ProductDto
     {
+        public string No { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
     }
 }
