@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Infrastructure.Mappings;
 using Product.API.Entities;
 using Shared.DTOs.Product;
 
@@ -10,7 +11,7 @@ namespace Product.API
         {
             CreateMap<CardProduct, ProductDto>();
             //CreateMap<CreateProductDto, CardProduct>();
-            //CreateMap<UpdateProductDto, CardProduct>();
+            //CreateMap<UpdateProductDto, CardProduct>().IgnoreAllNonExisting();
         }
     }
 }
