@@ -22,7 +22,8 @@
   customerdb:
     container_name: customerdb_eshop_micr
     environment:
-      POSTGRES_PASSWORD: "123456"
+       POSTGRES_USER: admin
+       POSTGRES_PASSWORD: "123456"
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data
