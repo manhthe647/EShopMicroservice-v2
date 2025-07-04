@@ -5,6 +5,7 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{961B4D37-B6A9-4F35-ABFB-0CE8BB304E78}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
 		docker-compose.override.yml = docker-compose.override.yml
 		docker-compose.yml = docker-compose.yml
 		README.md = README.md
@@ -20,9 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{8092
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{14EB557A-89AD-4D82-8C09-4FEC9046D883}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging", "Common.Logging\Common.Logging.csproj", "{A6E1832C-8B61-4919-BB41-71EEB007A525}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Logging", "Common.Logging\Common.Logging.csproj", "{A6E1832C-8B61-4919-BB41-71EEB007A525}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Messages", "EventBus.Message\EventBus.Messages.csproj", "{243B4E32-1DB8-49FD-B3B7-7E537C4A09D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus.Messages", "EventBus.Message\EventBus.Messages.csproj", "{243B4E32-1DB8-49FD-B3B7-7E537C4A09D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Products", "Products", "{9CC8B303-B4E2-44F9-8A68-3EA27EA205DF}"
 EndProject
@@ -34,25 +35,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScheduledJobs", "ScheduledJobs", "{40023BC4-D36E-47A9-AB94-456E5CAB1096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShopApp", "EShopApp\EShopApp.csproj", "{809548F2-ECDA-4DC6-8605-F9EBCC2791FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShopApp", "EShopApp\EShopApp.csproj", "{809548F2-ECDA-4DC6-8605-F9EBCC2791FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basket.API", "Basket.API\Basket.API.csproj", "{53143104-ADBC-4175-BECD-A144657B527C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket.API", "Basket.API\Basket.API.csproj", "{53143104-ADBC-4175-BECD-A144657B527C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customers.API", "Customers.API\Customers.API.csproj", "{700861C2-C38C-448C-8B8B-98A2D428FD90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customers.API", "Customers.API\Customers.API.csproj", "{700861C2-C38C-448C-8B8B-98A2D428FD90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.API", "Inventory.API\Inventory.API.csproj", "{2CD369B7-997F-4B75-8B4D-BAE66DA7C337}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.API", "Inventory.API\Inventory.API.csproj", "{2CD369B7-997F-4B75-8B4D-BAE66DA7C337}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.API", "Product.API\Product.API.csproj", "{D539DD01-A791-4D23-B8F6-87FF909A0400}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.API", "Product.API\Product.API.csproj", "{D539DD01-A791-4D23-B8F6-87FF909A0400}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangFired.API", "HangFired.API\HangFired.API.csproj", "{FCAE67CB-7B4D-4C0F-BEC2-20FCE9C8EF0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HangFired.API", "HangFired.API\HangFired.API.csproj", "{FCAE67CB-7B4D-4C0F-BEC2-20FCE9C8EF0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{A49E5FD8-DB89-413E-B98D-A3789AA04FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{A49E5FD8-DB89-413E-B98D-A3789AA04FB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{21D14298-4DA0-4D32-B921-344E3DB45379}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{21D14298-4DA0-4D32-B921-344E3DB45379}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{7D25B942-BCC6-4439-9C0A-821E3A93ECE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{7D25B942-BCC6-4439-9C0A-821E3A93ECE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateways", "ApiGateways\ApiGateways.csproj", "{FB744954-0F5E-4A33-82C8-0194D0F0746C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateways", "ApiGateways\ApiGateways.csproj", "{FB744954-0F5E-4A33-82C8-0194D0F0746C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,5 +1,6 @@
 ﻿using Contracts.Domains.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Product.API.Entities;
 
 namespace Product.API.Persistence
 {
@@ -9,6 +10,14 @@ namespace Product.API.Persistence
         {
         }
         public DbSet<Entities.CardProduct> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Gọi phương thức base để đảm bảo các cấu hình mặc định được áp dụng
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<CardProduct>().HasIndex(p => p.No).IsUnique(); // Đảm bảo trường No là duy nhất
+        }
+
         // Ghi đè phương thức SaveChangesAsync để xử lý logic cập nhật thời gian tạo/sửa đổi
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
