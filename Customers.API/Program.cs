@@ -1,4 +1,9 @@
 using Common.Logging;
+using Contracts.Common.Interfaces;
+using Customers.API.Persistence;
+using Customers.API.Services;
+using Customers.API.Services.Interfaces;
+using Infrastructure.Common;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -23,7 +28,17 @@ try
     builder.Services.AddDbContext<Customers.API.Persistence.CustomerContext>(options =>
         options.UseNpgsql(connectionString));
 
+    builder.Services.AddScoped<Customers.API.Repositories.Interfaces.ICustomerRepository, Customers.API.Repositories.CustomerRepositoryAsync>()
+        .AddScoped(typeof(IRepositoryBaseAsync<,,>), typeof(RepositoryBaseAsync<,,>))
+        .AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>))
+        .AddScoped(typeof(ICustomerService), typeof(CustomerService));
+
     var app = builder.Build();
+    app.MapGet("/", () => "Welcome to Customers API!");
+    app.MapPost("/", () => "Welcome to Customers API!");
+    app.MapPut("/", () => "Welcome to Customers API!");
+    app.MapDelete("/", () => "Welcome to Customers API!");
+
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
@@ -37,6 +52,7 @@ try
     app.UseAuthorization();
 
     app.MapControllers();
+    app.SeedCustomerData().Run();
 
     app.Run();
 
