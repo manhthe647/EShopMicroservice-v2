@@ -24,6 +24,7 @@
     environment:
        POSTGRES_USER: admin
        POSTGRES_PASSWORD: "123456"
+       POSTGRES_DB: CustomerDB
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data
