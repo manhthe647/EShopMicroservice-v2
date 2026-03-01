@@ -1,5 +1,6 @@
 using Common.Logging;
 using Contracts.Common.Interfaces;
+using Customers.API.Controllers;
 using Customers.API.Persistence;
 using Customers.API.Services;
 using Customers.API.Services.Interfaces;
@@ -29,15 +30,22 @@ try
         options.UseNpgsql(connectionString));
 
     builder.Services.AddScoped<Customers.API.Repositories.Interfaces.ICustomerRepository, Customers.API.Repositories.CustomerRepositoryAsync>()
-        .AddScoped(typeof(IRepositoryBaseAsync<,,>), typeof(RepositoryBaseAsync<,,>))
-        .AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>))
+        .AddScoped(typeof(IRepositoryQueryBase<,,>), typeof(IRepositoryQueryBase<,,>))
         .AddScoped(typeof(ICustomerService), typeof(CustomerService));
 
     var app = builder.Build();
     app.MapGet("/", () => "Welcome to Customers API!");
-    app.MapPost("/", () => "Welcome to Customers API!");
-    app.MapPut("/", () => "Welcome to Customers API!");
-    app.MapDelete("/", () => "Welcome to Customers API!");
+    //app.MapGet("/api/customers", async(ICustomerService customerService) =>  await customerService.GetCustomersAsyn());
+    //app.MapGet("/api/customers/{username}", async(string username, ICustomerService customerService) =>
+    //{
+    //    var customer = await customerService.GetCustomerByUsernameAsync(username);
+    //    return customer;
+    //});
+
+    //app.MapPost("/", () => "Welcome to Customers API!");
+    //app.MapPut("/", () => "Welcome to Customers API!");
+    //app.MapDelete("/", () => "Welcome to Customers API!");
+    app.MapCustomersAPI();
 
 
     // Configure the HTTP request pipeline.

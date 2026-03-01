@@ -64,10 +64,16 @@
       - "5601:5601"
   #microservices api section
   product-api:
-    image: ${DOCKER_REGISTRY-}product-api:${TAG:-latest}
-    build:
-      context: .
-      dockerfile: Product.API/Dockerfile
+      image: ${DOCKER_REGISTRY-}product-api:${TAG:-latest}
+      build:
+        context: .
+        dockerfile: Product.API/Dockerfile
+
+  customer-api:
+      image: ${DOCKER_REGISTRY-}customer-api:${TAG:-latest}
+      build:
+        context: .
+        dockerfile: Customers.API/Dockerfile
    
 networks:
   default:
