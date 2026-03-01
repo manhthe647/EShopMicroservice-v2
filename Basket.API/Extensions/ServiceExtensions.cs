@@ -1,0 +1,13 @@
+﻿using Basket.API.Repositories.Interfaces;
+using Basket.API.Repositories;
+using Contracts.Common.Interfaces;
+using Infrastructure.Common;
+
+namespace Basket.API.Extensions;
+
+public static class ServiceExtensions
+{
+    public static IServiceCollection ConfigureServices(this IServiceCollection services) =>
+        services.AddScoped<IBasketRepository, BasketRepository>()
+                .AddTransient<ISerializeService, SerializeService>();
+}
