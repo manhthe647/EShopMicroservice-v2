@@ -3,73 +3,48 @@
   orderdb:
     container_name: orderdb_eshop_micr
     environment:
-      SA_PASSWORD: "123456"
+      SA_PASSWORD: "Admin@1234"
       ACCEPT_EULA: "Y"
     restart: always
-    volumes:
-      - sqlserver_data:/var/opt/mssql
-    ports:
-      - "1435:1433"
+
   productdb:
     container_name: productdb_eshop_micr
     environment:
       MYSQL_ROOT_PASSWORD: "123456"
     restart: always
-    volumes:
-      - mysql_data:/var/lib/mysql
-    ports:
-      - "3306:3306"
+
   customerdb:
     container_name: customerdb_eshop_micr
     environment:
-       POSTGRES_USER: admin
-       POSTGRES_PASSWORD: "123456"
-       POSTGRES_DB: CustomerDB
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: CustomerDB
     restart: always
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "3308:5432"
+
   basketdb:
     container_name: basketdb_eshop_micr
     restart: always
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
+
   inventorydb:
     container_name: inventorydb_eshop_micr
     restart: always
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
+
   #infrastructure section
   rabbitmq:
     container_name: rabbitmq_eshop_micr
     restart: always
-    ports:
-      - "5672:5672"
-      - "15672:15672"
+
   pgadmin:
     container_name: pgadmin_eshop_micr
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=admin1234
     restart: always
-    ports:
-      - "5050:80"
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
+
   portainer:
     container_name: portainer_eshop_micr
     restart: always
-    ports:
-      - "8080:8000"
-      - "9000:9000"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+
   elasticsearch:
     container_name: elasticsearch_eshop_micr
     environment:
@@ -77,27 +52,48 @@
       - xpack.watcher.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - discovery.type=single-node
-    ports:
-      - "9200:9200"
-    volumes:
-      - elasticsearch_data:/usr/share/elasticsearch/data
+
   kibana:
     container_name: kibana_eshop_micr
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
-    depends_on:
-      - elasticsearch
-    ports:
-      - "5601:5601"
- #microservice - section
-  product-api:
+
+  #microservices section
+  product.api:
     container_name: product.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - "ConnectionStrings:ProductConnection=Server=productdb;Port=3306;Database=ProductDB;User Id=root;Password=123456;"
     depends_on:
-      - productdb
+      productdb:
+        condition: service_healthy
     ports:
       - "6002:80"
+    restart: always
+
+  customer.api:
+    container_name: customer.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - "ConnectionStrings:CustomerConnection=Server=customerdb;Port=5432;Database=CustomerDB;User Id=admin;Password=123456;"
+    depends_on:
+      customerdb:
+        condition: service_healthy
+    ports:
+      - "6003:80"
+    restart: always
+
+  basket.api:
+    container_name: basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - "CacheSettings:ConnectionString=basketdb:6379"
+    depends_on:
+      basketdb:
+        condition: service_healthy
+    ports:
+      - "6004:80"
     restart: always

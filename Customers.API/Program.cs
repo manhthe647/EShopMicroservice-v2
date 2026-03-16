@@ -1,69 +1,52 @@
-using Common.Logging;
-using Contracts.Common.Interfaces;
+﻿using Common.Logging;
 using Customers.API.Controllers;
 using Customers.API.Persistence;
 using Customers.API.Services;
 using Customers.API.Services.Interfaces;
-using Infrastructure.Common;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Host.UseSerilog(Serilogger.Configure);
+
 Log.Information("Starting Customers.API");
 
 try
 {
-    // Add services to the container.
-
     builder.Services.AddControllers();
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    var connectionString = builder.Configuration.GetConnectionString("CustomerConnection");
     if (string.IsNullOrEmpty(connectionString))
     {
-        throw new InvalidOperationException("Connection string 'DefaultConnection' is not configured.");
+        throw new InvalidOperationException("Connection string 'CustomerConnection' is not configured.");
     }
-    builder.Services.AddDbContext<Customers.API.Persistence.CustomerContext>(options =>
+
+    builder.Services.AddDbContext<CustomerContext>(options =>
         options.UseNpgsql(connectionString));
 
-    builder.Services.AddScoped<Customers.API.Repositories.Interfaces.ICustomerRepository, Customers.API.Repositories.CustomerRepositoryAsync>()
-        .AddScoped(typeof(IRepositoryQueryBase<,,>), typeof(IRepositoryQueryBase<,,>))
-        .AddScoped(typeof(ICustomerService), typeof(CustomerService));
+    builder.Services.AddScoped<Customers.API.Repositories.Interfaces.ICustomerRepository,
+                               Customers.API.Repositories.CustomerRepositoryAsync>()
+                    .AddScoped<ICustomerService, CustomerService>();
 
     var app = builder.Build();
-    app.MapGet("/", () => "Welcome to Customers API!");
-    //app.MapGet("/api/customers", async(ICustomerService customerService) =>  await customerService.GetCustomersAsyn());
-    //app.MapGet("/api/customers/{username}", async(string username, ICustomerService customerService) =>
-    //{
-    //    var customer = await customerService.GetCustomerByUsernameAsync(username);
-    //    return customer;
-    //});
 
-    //app.MapPost("/", () => "Welcome to Customers API!");
-    //app.MapPut("/", () => "Welcome to Customers API!");
-    //app.MapDelete("/", () => "Welcome to Customers API!");
-    app.MapCustomersAPI();
-
-
-    // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
         app.UseSwaggerUI();
     }
 
-    app.UseHttpsRedirection();
-
     app.UseAuthorization();
-
     app.MapControllers();
-    app.SeedCustomerData().Run();
+    app.MapGet("/", () => "Welcome to Customers API!");
+    app.MapCustomersAPI();
+
+    app.SeedCustomerData(); // ← bỏ await
 
     app.Run();
-
 }
 catch (Exception ex)
 {
