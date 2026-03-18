@@ -13,10 +13,7 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavio
         _logger = logger;
     }
 
-    public async Task<TResponse> Handle(
-     TRequest request,
-     CancellationToken cancellationToken,
-     RequestHandlerDelegate<TResponse> next)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         try
         {
@@ -25,15 +22,8 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavio
         catch (Exception ex)
         {
             var requestName = typeof(TRequest).Name;
-
-            _logger.LogError(
-                ex,
-                "Application Request: Unhandled Exception for Request {RequestName} {@Request}",
-                requestName,
-                request);
-
+            _logger.LogError(ex, $"Application Request: Unhandled Exception for Request {requestName} {request}");
             throw;
         }
     }
-
 }
